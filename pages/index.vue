@@ -2,7 +2,7 @@
   <main class="main">
     <landing :data="landingBackground" />
     <div :class="{'main__header-paused' : true, 'main__header-sticky': isSticky }">
-      <global-header :data="{text: 'About', link: '/about-me'}"/>
+      <global-header :data="{text: 'About', link: '/aboutme'}"/>
     </div>
   </main>
 </template>
@@ -20,14 +20,16 @@ export default {
       return res.data.story.content;
     }).catch((res) => {
       if (!res.response) {
-        console.error(res)
-        context.error({ statusCode: 404, message: 'Failed to receive content form api' })
-      } else {
-        console.error(res.response.data)
-        context.error({ statusCode: res.response.status, message: res.response.data })
+        console.error(res);
+        context.error({ statusCode: 404, message: 'Failed to receive content form api' });
+      }
+      else {
+        console.error(res.response.data);
+        context.error({ statusCode: res.response.status, message: res.response.data });
       }
     });
     landingBackground = storyContent.landing_background.filename;
+
     return {
       landingBackground: landingBackground,
     };
@@ -39,8 +41,8 @@ export default {
   },
   methods: {
     monitorHeader() {
-      let position = (document.body.getBoundingClientRect().top * -1)
-      let limit = window.innerHeight
+      let position = (document.body.getBoundingClientRect().top * -1);
+      let limit = window.innerHeight;
 
       if (position > limit) {
         this.isSticky = true;
@@ -50,7 +52,7 @@ export default {
       }
     },
     launchHeader() {
-      window.addEventListener('scroll', this.monitorHeader, {passive: true})
+      window.addEventListener('scroll', this.monitorHeader, {passive: true});
     },
     async scroll() {
       let landingHeight = window.innerHeight;
@@ -69,7 +71,7 @@ export default {
     this.launchHeader();
   },
   beforeDestroy() {
-    window.removeEventListener('scroll', this.monitorHeader)
+    window.removeEventListener('scroll', this.monitorHeader);
   }
 }
 </script>
