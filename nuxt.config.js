@@ -20,8 +20,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
+  css: ['@/assets/css/master.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -38,6 +37,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    ['storyblok-nuxt', {accessToken: 'oDi0gF0nQ5PboNJI5tXQRwtt', cacheProvider: 'memory'}],
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
