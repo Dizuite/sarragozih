@@ -9,6 +9,9 @@
 
 <script>
 export default {
+  head: {
+    meta: [{'cm-order': 'keepscroll'}],
+  },
   async asyncData(context) {
     let storyContent;
     let landingBackground;
@@ -56,7 +59,6 @@ export default {
       //   landingHeight = 585
       // else if (landingHeight > 1050) // grands écrans
       //   landingHeight = 1050
-      // landingHeight = landingHeight + 20
       window.scrollTo({
         top: landingHeight,
         behavior: 'smooth'
