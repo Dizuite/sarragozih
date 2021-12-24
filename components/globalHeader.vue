@@ -12,9 +12,7 @@ export default {
   props: ['data'],
   computed: {
     isOrigin: function() {
-      let metaTarget = document.querySelector('meta[cm-order="keepscroll"]')
-
-      if (metaTarget) {
+      if (document.querySelector('meta[cm-order="keepscroll"]')) {
         return true;
       }
       else {
