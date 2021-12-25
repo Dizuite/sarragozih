@@ -30,6 +30,8 @@ export default {
 
 <style lang="css" scoped>
 .header {
+  width: calc(100% - 16vw);
   padding: 16px 8vw;
+  background: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
 }
 </style>

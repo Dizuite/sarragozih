@@ -16,11 +16,20 @@ html {
 body {
   /* overflow: hidden; */
   margin: 0;
-  min-height: 300vh; /* temporary */
+  min-height: 220vh; /* temporary */
 }
 
 .typography {
   font-family: "Raleway";
+}
+
+.typography__paragraph {
+  font-family: "Raleway";
+  font-weight: 500;
+  text-align: justify;
+  letter-spacing: 1px;
+  line-height: 24px;
+  font-size: 16px;
 }
 
 .button__button-border {
@@ -30,6 +39,7 @@ body {
   outline: inherit;
   font-family: "Raleway";
   font-weight: 900;
+  font-size: 14px;
   color: white;
   cursor: pointer;
   opacity: .8;
@@ -47,6 +57,7 @@ body {
   outline: inherit;
   font-family: "Raleway";
   font-weight: 900;
+  font-size: 14px;
   color: black;
   cursor: pointer;
   transition: .3s;
@@ -55,4 +66,13 @@ body {
 .button__link:hover {
   border-bottom: 1px solid rgba(0, 0, 0, 1);
   opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .typography__paragraph {
+    letter-spacing: 0.5px;
+    line-height: 22px;
+    font-size: 14px;
+    margin-top: 0;
+  }
 }

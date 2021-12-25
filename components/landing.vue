@@ -36,7 +36,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 110px;
+  width: 112px;
 }
 
 .landing__arrow-down {

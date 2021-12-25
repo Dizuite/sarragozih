@@ -3,6 +3,7 @@
     <landing :data="landingBackground" />
     <div :class="{'main__header-paused' : true, 'main__header-sticky': isSticky }">
       <global-header :data="{text: 'About', link: '/aboutme'}"/>
+      <div class="main__header-replace-zone" v-if="isSticky"></div>
     </div>
   </main>
 </template>
@@ -51,16 +52,9 @@ export default {
         this.isSticky = false;
       }
     },
-    launchHeader() {
-      window.addEventListener('scroll', this.monitorHeader, {passive: true});
-    },
     async scroll() {
       let landingHeight = window.innerHeight;
 
-      // if (landingHeight < 585) // petits écrans
-      //   landingHeight = 585
-      // else if (landingHeight > 1050) // grands écrans
-      //   landingHeight = 1050
       window.scrollTo({
         top: landingHeight,
         behavior: 'smooth'
@@ -68,7 +62,7 @@ export default {
     }
   },
   mounted() {
-    this.launchHeader();
+    window.addEventListener('scroll', this.monitorHeader, {passive: true});
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.monitorHeader);
@@ -89,5 +83,10 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
+}
+
+.main__header-replace-zone {
+  width: 100vw;
+  height: 54px;
 }
 </style>
