@@ -1,10 +1,11 @@
 <template>
   <main class="main">
     <landing :data="landingBackground" />
-    <div :class="{'main__header-paused' : true, 'main__header-sticky': isSticky }">
+    <div :class="{'main__header-paused' : true, 'main__header-sticky': isSticky}">
       <global-header :data="{text: 'About', link: '/aboutme'}"/>
     </div>
     <div class="main__header-replace-zone" v-if="isSticky"></div>
+    <gallery v-if="storyContentGallery.length > 0" :data="{galleryData: storyContentGallery}" />
     <global-footer class=""/>
   </main>
 </template>
@@ -18,7 +19,7 @@ export default {
     let storyContent;
     let landingBackground;
 
-    storyContent = await context.app.$storyapi.get(`cdn/stories/home_page`, {}).then((res) => {
+    storyContent = await context.app.$storyapi.get('cdn/stories/home_page', {}).then((res) => {
       return res.data.story.content;
     }).catch((res) => {
       if (!res.response) {
@@ -34,6 +35,7 @@ export default {
 
     return {
       landingBackground: landingBackground,
+      storyContentGallery: storyContent.gallery,
     };
   },
   data() {
@@ -60,7 +62,7 @@ export default {
         top: landingHeight,
         behavior: 'smooth'
       });
-    }
+    },
   },
   mounted() {
     window.addEventListener('scroll', this.monitorHeader, {passive: true});
@@ -84,6 +86,9 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
+  z-index: var(--high);
+  transition: .1s;
 }
 
 .main__header-replace-zone {

@@ -15,7 +15,7 @@ export default {
     let firstText;
     let secondText;
 
-    storyContent = await context.app.$storyapi.get(`cdn/stories/about_me`, {}).then((res) => {
+    storyContent = await context.app.$storyapi.get('cdn/stories/about_me', {}).then((res) => {
       return res.data.story.content;
     }).catch((res) => {
       if (!res.response) {

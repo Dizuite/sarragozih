@@ -1,6 +1,10 @@
 :root {
   --primary-color: #3D3D3D;
   --secondary-color: #F6F4F4;
+  --tertiary-color: #EFEFEF;
+
+  --high: 10;
+  --regular-high: 5
 }
 
 @font-face {
