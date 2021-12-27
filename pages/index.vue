@@ -3,8 +3,9 @@
     <landing :data="landingBackground" />
     <div :class="{'main__header-paused' : true, 'main__header-sticky': isSticky }">
       <global-header :data="{text: 'About', link: '/aboutme'}"/>
-      <div class="main__header-replace-zone" v-if="isSticky"></div>
     </div>
+    <div class="main__header-replace-zone" v-if="isSticky"></div>
+    <global-footer class=""/>
   </main>
 </template>
 

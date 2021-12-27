@@ -1,3 +1,8 @@
+:root {
+  --primary-color: #3D3D3D;
+  --secondary-color: #F6F4F4;
+}
+
 @font-face {
   font-family: "Raleway";
   font-style: normal;
@@ -11,16 +16,20 @@
 }
 
 html {
+  background-color: var(--primary-color);
 }
 
 body {
-  /* overflow: hidden; */
   margin: 0;
-  min-height: 220vh; /* temporary */
+  background-color: var(--secondary-color);
 }
 
-.typography {
+.typography__white-regular {
   font-family: "Raleway";
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #EDE4D4;
 }
 
 .typography__paragraph {
@@ -30,6 +39,7 @@ body {
   letter-spacing: 1px;
   line-height: 24px;
   font-size: 16px;
+  color: var(--primary-color);
 }
 
 .button__button-border {
@@ -58,7 +68,7 @@ body {
   font-family: "Raleway";
   font-weight: 900;
   font-size: 14px;
-  color: black;
+  color: var(--primary-color);
   cursor: pointer;
   transition: .3s;
 }

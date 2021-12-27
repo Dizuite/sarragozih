@@ -2,6 +2,7 @@
   <main class="about-me">
     <global-header class="about-me__header" :data="{text: 'Back', link: '/'}"/>
     <aboutme-content :data="{imageLeft: imageLeft, imageRight: imageRight, firstText: firstText, secondText: secondText}" />
+    <global-footer/>
   </main>
 </template>
 
