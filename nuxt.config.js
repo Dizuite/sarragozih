@@ -1,6 +1,15 @@
+import redirectSSL from 'redirect-ssl'
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
+
+  // server middleware for https redirection
+  serverMiddleware: [
+    redirectSSL.create({
+      enabled: process.env.NODE_ENV === 'production'
+    })
+  ],
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
