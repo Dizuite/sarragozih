@@ -40,11 +40,11 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 112px;
 }
 
 .landing__arrow-down {
   width: 20px;
+  margin-right: 6px;
   filter: invert(100%);
 }
 </style>

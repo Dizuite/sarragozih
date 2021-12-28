@@ -16,12 +16,6 @@
   src: url('~assets/fonts/raleway/Raleway-VariableFont_wght.ttf') format('truetype');
 }
 
-@font-face {
-  font-family: "Raleway";
-  font-style: italic;
-  src: url('~assets/fonts/raleway/Raleway-Italic-VariableFont_wght.ttf') format('truetype');
-}
-
 html {
   background-color: var(--primary-color);
 }
@@ -33,7 +27,7 @@ body {
 
 .typography__white-high {
   font-family: "Raleway";
-  font-weight: 900;
+  font-weight: 600;
   font-size: 24px;
   letter-spacing: 1px;
   color: var(--secondary-color);
@@ -42,7 +36,7 @@ body {
 
 .typography__white-regular {
   font-family: "Raleway";
-  font-weight: 900;
+  font-weight: 600;
   font-size: 16px;
   letter-spacing: 1px;
   color: var(--secondary-color);
@@ -74,7 +68,7 @@ body {
   background-color: rgba(0, 0, 0, .1);
   outline: inherit;
   font-family: "Raleway";
-  font-weight: 900;
+  font-weight: 600;
   font-size: 14px;
   color: white;
   cursor: pointer;
@@ -92,7 +86,7 @@ body {
   background: none;
   outline: inherit;
   font-family: "Raleway";
-  font-weight: 900;
+  font-weight: 600;
   font-size: 14px;
   color: var(--primary-color);
   cursor: pointer;
