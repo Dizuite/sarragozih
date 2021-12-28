@@ -1,5 +1,5 @@
 <template lang="html">
-  <main class="landing" :style="{backgroundImage: `url(${data})`}">
+  <main class="landing" :style="{backgroundImage: `url(${data})`, height: height}">
     <div>
       <button class="landing__button-arrow-down button__button-border" @click="scroll()" type="button" name="button">
         <img class="landing__arrow-down" src="icons/arrow_down.svg" alt="Arrow pointing dow">
@@ -12,6 +12,11 @@
 <script>
 export default {
   props: ['data'],
+  data() {
+    return {
+      height: `${window.innerHeight - 64}px`
+    };
+  },
   methods: {
     scroll() {
       this.$parent.scroll();
@@ -25,7 +30,6 @@ export default {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  height: calc(100vh - 64px);
   padding: 32px 8vw;
   background-position: center;
   background-size: cover;
