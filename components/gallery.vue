@@ -5,7 +5,11 @@
            v-for="(item, index) in data.galleryData"
            v-if="item.totalGcdNow <= totalGcd / 3"
            :key="`${index}-col-1`">
-        <div class="gallery__image-overlay"></div>
+        <div class="gallery__image-overlay" @click="openViewer(item.title, item.img.filename, item.dimensions, item.medium_support)">
+          <span class="typography__white-regular" v-if="item.title != ''">{{item.title}}</span>
+          <span class="typography__white-low" v-if="item.dimensions != ''">{{item.dimensions}}</span>
+          <span class="typography__white-low" v-if="item.medium_support != ''">{{item.medium_support}}</span>
+        </div>
         <img class="gallery__image" :src="item.img.filename" alt="">
       </div>
     </div>
@@ -14,7 +18,11 @@
            v-for="(item, index) in data.galleryData"
            v-if="item.totalGcdNow > totalGcd / 3 && item.totalGcdNow < (totalGcd / 3) * 2"
            :key="`${index}-col-2`">
-        <div class="gallery__image-overlay"></div>
+        <div class="gallery__image-overlay" @click="openViewer(item.title, item.img.filename, item.dimensions, item.medium_support)">
+          <span class="typography__white-regular" v-if="item.title != ''">{{item.title}}</span>
+          <span class="typography__white-low" v-if="item.dimensions != ''">{{item.dimensions}}</span>
+          <span class="typography__white-low" v-if="item.medium_support != ''">{{item.medium_support}}</span>
+        </div>
         <img class="gallery__image" :src="item.img.filename" alt="">
       </div>
     </div>
@@ -22,26 +30,29 @@
       <div class="gallery__image-bloc"
            v-for="(item, index) in data.galleryData"
            v-if="item.totalGcdNow >= (totalGcd / 3) * 2"
-           :key="`${index}-col-3`"
-           >
-        <div class="gallery__image-overlay"></div>
+           :key="`${index}-col-3`">
+        <div class="gallery__image-overlay" @click="openViewer(item.title, item.img.filename, item.dimensions, item.medium_support)">
+          <span class="typography__white-regular" v-if="item.title != ''">{{item.title}}</span>
+          <span class="typography__white-low" v-if="item.dimensions != ''">{{item.dimensions}}</span>
+          <span class="typography__white-low" v-if="item.medium_support != ''">{{item.medium_support}}</span>
+        </div>
         <img class="gallery__image" :src="item.img.filename" alt="">
       </div>
     </div>
-    <div class="gallery__column-mobile gallery__column-left-mobile">
+    <div class="gallery__column-mobile">
       <div class="gallery__image-bloc"
            v-for="(item, index) in data.galleryData"
            v-if="item.totalGcdNow <= totalGcd / 2"
            :key="`${index}-col-1`">
-        <img class="gallery__image-mobile" :src="item.img.filename" alt="">
+        <img class="gallery__image-mobile" @click="openViewer(item.title, item.img.filename, item.dimensions, item.medium_support)" :src="item.img.filename" alt="">
       </div>
     </div>
-    <div class="gallery__column-mobile gallery__column-right-mobile">
+    <div class="gallery__column-mobile">
       <div class="gallery__image-bloc-mobile"
            v-for="(item, index) in data.galleryData"
            v-if="item.totalGcdNow > totalGcd / 2"
            :key="`${index}-col-2`">
-        <img class="gallery__image-mobile" :src="item.img.filename" alt="">
+        <img class="gallery__image-mobile" @click="openViewer(item.title, item.img.filename, item.dimensions, item.medium_support)" :src="item.img.filename" alt="">
       </div>
     </div>
   </main>
@@ -59,6 +70,13 @@ export default {
     getGcd(w, h) {
       return (h == 0) ? w : this.getGcd(h, w % h);
     },
+    openViewer(title, img, dimensions, mediumSupport) {
+      this.$parent.imageTitle = title ? title : 'Pas de titre';
+      this.$parent.imageUrl = img ? img : false;
+      this.$parent.imageDimensions = dimensions ? dimensions : 'Pas de dimensions';
+      this.$parent.imageMediumSupport = mediumSupport ? mediumSupport : false;
+      this.$parent.showOverlay = true;
+    }
   },
   mounted() {
     let self = this;
@@ -97,9 +115,6 @@ export default {
   flex-direction: column;
 }
 
-.gallery__column-left {
-}
-
 .gallery__column-left .gallery__image {
   width: calc(28vw - 11px);
 }
@@ -110,9 +125,6 @@ export default {
 
 .gallery__column-center .gallery__image {
   width: calc(28vw - 10px);
-}
-
-.gallery__column-right {
 }
 
 .gallery__column-right .gallery__image {
@@ -131,22 +143,28 @@ export default {
 }
 
 .gallery__image-bloc:nth-last-child(1) .gallery__image-overlay {
-  height: 100%;
+  height: calc(100% - 16px);
 }
 
 .gallery__image-overlay {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   top: 0;
   left: 0;
-  width: 100%;
-  height: calc(100% - 8px);
+  width: calc(100% - 16px);
+  height: calc(100% - 24px);
+  padding: 8px;
   background-color: rgba(0, 0, 0, 0);
+  opacity: 0;
   z-index: var(--regular-high);
   transition: .2s;
 }
 
 .gallery__image-overlay:hover {
   background-color: rgba(0, 0, 0, .4);
+  opacity: 1;
 }
 
 .gallery__image {
@@ -156,14 +174,6 @@ export default {
 .gallery__column-mobile {
   display: none;
   flex-direction: column;
-}
-
-.gallery__column-left-mobile {
-
-}
-
-.gallery__column-right-mobile {
-
 }
 
 .gallery__image-bloc-mobile {
@@ -193,6 +203,10 @@ export default {
 
   .gallery__column-mobile {
     display: flex;
+  }
+
+  .gallery__image-mobile {
+    width: calc(42vw - 12px);
   }
 }
 </style>

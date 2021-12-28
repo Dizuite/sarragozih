@@ -10,6 +10,10 @@
 <script>
 export default {
   props: ['data'],
+  data() {
+    return {
+    }
+  },
   computed: {
     isOrigin: function() {
       if (document.querySelector('meta[cm-order="keepscroll"]')) {
@@ -24,7 +28,7 @@ export default {
     keepScroll() {
       history.back();
     }
-  },
+  }
 }
 </script>
 

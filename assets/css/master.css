@@ -1,10 +1,13 @@
 :root {
+  /* Colors */
   --primary-color: #3D3D3D;
   --secondary-color: #F6F4F4;
   --tertiary-color: #EFEFEF;
 
+  /* Z-index */
+  --top-high: 10;
   --high: 10;
-  --regular-high: 5
+  --regular-high: 5;
 }
 
 @font-face {
@@ -28,12 +31,31 @@ body {
   background-color: var(--secondary-color);
 }
 
+.typography__white-high {
+  font-family: "Raleway";
+  font-weight: 900;
+  font-size: 24px;
+  letter-spacing: 1px;
+  color: var(--secondary-color);
+  text-shadow: 1px 1px 2px black;
+}
+
 .typography__white-regular {
+  font-family: "Raleway";
+  font-weight: 900;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: var(--secondary-color);
+  text-shadow: 1px 1px 2px black;
+}
+
+.typography__white-low {
   font-family: "Raleway";
   font-weight: 500;
   font-size: 12px;
   letter-spacing: 1px;
   color: #EDE4D4;
+  text-shadow: 1px 1px 2px black;
 }
 
 .typography__paragraph {
@@ -89,4 +111,13 @@ body {
     font-size: 14px;
     margin-top: 0;
   }
+}
+
+/* Vue Transitions */
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }

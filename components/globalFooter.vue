@@ -1,8 +1,8 @@
 <template lang="html">
   <footer class="footer">
-    <span class="typography__white-regular">
+    <span class="typography__white-low">
       © Sarragozih by
-      <a class="typography__white-regular footer__link" href="https://github.com/Dizuite">Dizuite</a>
+      <a class="typography__white-low footer__link" href="https://github.com/Dizuite">Dizuite</a>
     </span>
   </footer>
 </template>

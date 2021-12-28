@@ -1,12 +1,15 @@
 <template>
   <main class="main">
     <landing :data="landingBackground" />
-    <div :class="{'main__header-paused' : true, 'main__header-sticky': isSticky}">
+    <div :class="{'main__header-sticky': isSticky}">
       <global-header :data="{text: 'About', link: '/aboutme'}"/>
     </div>
     <div class="main__header-replace-zone" v-if="isSticky"></div>
     <gallery v-if="storyContentGallery.length > 0" :data="{galleryData: storyContentGallery}" />
     <global-footer class=""/>
+    <transition name="fade">
+      <overlay v-if="showOverlay" :data="{url: imageUrl, title: imageTitle, dimensions: imageDimensions, mediumSupport: imageMediumSupport}" />
+    </transition>
   </main>
 </template>
 
@@ -41,6 +44,12 @@ export default {
   data() {
     return {
       isSticky: false,
+      widthHeader: 'calc(100% - 8vw)',
+      showOverlay: false,
+      imageUrl: '',
+      imageTitle: '',
+      imageDimensions: '',
+      imageMediumSupport: '',
     }
   },
   methods: {
@@ -78,10 +87,6 @@ export default {
   position: relative;
 }
 
-.main__header-paused {
-
-}
-
 .main__header-sticky {
   position: fixed;
   top: 0;
@@ -92,7 +97,6 @@ export default {
 }
 
 .main__header-replace-zone {
-  width: 100vw;
   height: 54px;
 }
 </style>
