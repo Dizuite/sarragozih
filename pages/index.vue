@@ -8,7 +8,7 @@
     <gallery v-if="storyContentGallery.length > 0" :data="{galleryData: storyContentGallery}" />
     <global-footer class=""/>
     <transition name="fade">
-      <overlay v-if="showOverlay" :data="{url: imageUrl, title: imageTitle, dimensions: imageDimensions, mediumSupport: imageMediumSupport}" />
+      <viewer v-if="showViewer" :data="{url: imageUrl, title: imageTitle, dimensions: imageDimensions, mediumSupport: imageMediumSupport}" />
     </transition>
   </main>
 </template>
@@ -45,7 +45,7 @@ export default {
     return {
       isSticky: false,
       widthHeader: 'calc(100% - 8vw)',
-      showOverlay: false,
+      showViewer: false,
       imageUrl: '',
       imageTitle: '',
       imageDimensions: '',

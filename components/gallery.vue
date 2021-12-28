@@ -75,7 +75,7 @@ export default {
       this.$parent.imageUrl = img ? img : false;
       this.$parent.imageDimensions = dimensions ? dimensions : 'Pas de dimensions';
       this.$parent.imageMediumSupport = mediumSupport ? mediumSupport : false;
-      this.$parent.showOverlay = true;
+      this.$parent.showViewer = true;
     }
   },
   mounted() {
