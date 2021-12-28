@@ -16,4 +16,6 @@ $ npm run start
 
 For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
 
-Needs a structured Storyblok API to work
+Accessible [here](https://sarragozih.herokuapp.com/)
+
+Needs a structured Storyblok API to work locally
