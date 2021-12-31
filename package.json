@@ -14,5 +14,8 @@
     "nuxt": "^2.15.7",
     "redirect-ssl": "^3.0.0",
     "storyblok-nuxt": "^2.0.1"
+  },
+  "devDependencies": {
+    "@nuxtjs/svg": "^0.3.0"
   }
 }

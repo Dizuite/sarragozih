@@ -1,25 +1,23 @@
 <template lang="html">
-  <main class="landing" :style="{backgroundImage: `url(${data})`, height: height}">
-    <div>
-      <button class="landing__button-arrow-down button__button-border" @click="scroll()" type="button" name="button">
-        <img class="landing__arrow-down" src="icons/arrow_down.svg" alt="Arrow pointing dow">
-        <span class="typography__button">View more</span>
-      </button>
-    </div>
+  <main class="landing" :style="cssVars">
+    <a class="landing__button-arrow-down button__button-border" href="#content">
+      <Arrow class="landing__arrow-down" />
+      View more
+    </a>
   </main>
 </template>
 
 <script>
+import Arrow from "~/static/icons/arrow_down.svg?inline";
+
 export default {
-  props: ['data'],
-  data() {
-    return {
-      height: `${window.innerHeight - 64}px`
-    };
-  },
-  methods: {
-    scroll() {
-      this.$parent.scroll();
+  components: { Arrow },
+  props: ['src'],
+  computed: {
+      cssVars () {
+        return{
+          '--image-src': `url(${this.src})`,
+        }
     }
   }
 }
@@ -31,20 +29,24 @@ export default {
   justify-content: flex-end;
   align-items: flex-end;
   padding: 32px 8vw;
+  background-image: var(--image-src);
   background-position: center;
   background-size: cover;
   background-color: lightgrey;
+  box-sizing: border-box;
+  height: 100vh;
 }
 
 .landing__button-arrow-down {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  text-decoration: none;
+  gap: 6px;
 }
 
 .landing__arrow-down {
-  width: 20px;
-  margin-right: 6px;
-  filter: invert(100%);
+  width: 1.5em;
+  fill: currentColor;
 }
 </style>
