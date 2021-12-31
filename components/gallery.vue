@@ -2,7 +2,7 @@
   <main class="gallery">
     <div class="gallery__column-desktop gallery__column-left">
       <div class="gallery__image-bloc"
-           v-for="(item, index) in data.galleryData"
+           v-for="(item, index) in images"
            v-if="item.totalGcdNow <= totalGcd / 3"
            :key="`${index}-col-1`">
         <div class="gallery__image-overlay" @click="openViewer(item.title, item.img.filename, item.dimensions, item.medium_support)">
@@ -15,7 +15,7 @@
     </div>
     <div class="gallery__column-desktop gallery__column-center">
       <div class="gallery__image-bloc"
-           v-for="(item, index) in data.galleryData"
+           v-for="(item, index) in images"
            v-if="item.totalGcdNow > totalGcd / 3 && item.totalGcdNow < (totalGcd / 3) * 2"
            :key="`${index}-col-2`">
         <div class="gallery__image-overlay" @click="openViewer(item.title, item.img.filename, item.dimensions, item.medium_support)">
@@ -28,7 +28,7 @@
     </div>
     <div class="gallery__column-desktop gallery__column-right">
       <div class="gallery__image-bloc"
-           v-for="(item, index) in data.galleryData"
+           v-for="(item, index) in images"
            v-if="item.totalGcdNow >= (totalGcd / 3) * 2"
            :key="`${index}-col-3`">
         <div class="gallery__image-overlay" @click="openViewer(item.title, item.img.filename, item.dimensions, item.medium_support)">
@@ -41,7 +41,7 @@
     </div>
     <div class="gallery__column-mobile">
       <div class="gallery__image-bloc"
-           v-for="(item, index) in data.galleryData"
+           v-for="(item, index) in images"
            v-if="item.totalGcdNow <= totalGcd / 2"
            :key="`${index}-col-1`">
         <img class="gallery__image-mobile" @click="openViewer(item.title, item.img.filename, item.dimensions, item.medium_support)" :src="item.img.filename" alt="">
@@ -49,7 +49,7 @@
     </div>
     <div class="gallery__column-mobile">
       <div class="gallery__image-bloc-mobile"
-           v-for="(item, index) in data.galleryData"
+           v-for="(item, index) in images"
            v-if="item.totalGcdNow > totalGcd / 2"
            :key="`${index}-col-2`">
         <img class="gallery__image-mobile" @click="openViewer(item.title, item.img.filename, item.dimensions, item.medium_support)" :src="item.img.filename" alt="">
@@ -60,7 +60,7 @@
 
 <script>
 export default {
-  props: ['data'],
+  props: ['images'],
   data() {
     return {
       totalGcd: 0,
@@ -79,22 +79,17 @@ export default {
     }
   },
   mounted() {
-    let self = this;
-
-    for (let i = 0; i < this.data.galleryData.length; i++) {
-      let img = new Image();
-
-      img.src = this.data.galleryData[i].img.filename;
-      img.onload = function() {
-        let totalGcdNow = self.totalGcd;
-        let w = this.width;
-        let h = this.height;
-        let r = self.getGcd(w, h);
-
-        self.data.galleryData[i]['gcd'] = r;
-        self.data.galleryData[i]['ratio'] = (w / r) - (h / r);
-        self.data.galleryData[i]['totalGcdNow'] = totalGcdNow + r;
-        self.totalGcd += r;
+    for (let i = 0; i < this.images.length; i++) {
+      const img = new Image();
+      img.src = this.images[i].img.filename;
+      img.onload = () => {
+        const w = img.width;
+        const h = img.height;
+        const r = this.getGcd(w, h);
+        this.totalGcd += r;
+        this.images[i]['gcd'] = r;
+        this.images[i]['ratio'] = (w / r) - (h / r);
+        this.images[i]['totalGcdNow'] = this.totalGcd;
       }
     }
   }

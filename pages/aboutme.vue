@@ -9,13 +9,7 @@
 <script>
 export default {
   async asyncData(context) {
-    let storyContent;
-    let imageLeft;
-    let imageRight;
-    let firstText;
-    let secondText;
-
-    storyContent = await context.app.$storyapi.get('cdn/stories/about_me', {}).then((res) => {
+    const { image_left, image_right, text_1, text_2 } = await context.app.$storyapi.get('cdn/stories/about_me', {}).then((res) => {
       return res.data.story.content;
     }).catch((res) => {
       if (!res.response) {
@@ -28,26 +22,17 @@ export default {
       }
     });
 
-    imageLeft = storyContent.image_left.filename;
-    imageRight = storyContent.image_right.filename;
-    firstText = storyContent.text_1.content[0].content[0].text;
-    secondText = storyContent.text_2.content[0].content[0].text;
-
     return {
-      imageLeft: imageLeft,
-      imageRight: imageRight,
-      firstText: firstText,
-      secondText: secondText
+      imageLeft: image_left.filename,
+      imageRight: image_right.filename,
+      firstText: text_1.content[0].content[0].text,
+      secondText: text_2.content[0].content[0].text
     };
   },
 }
 </script>
 
 <style lang="css" scoped>
-.about-me {
-  position: relative;
-}
-
 .about-me__header {
   position: fixed;
 }
