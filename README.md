@@ -14,8 +14,8 @@ $ npm run build
 $ npm run start
 ```
 
-For detailed explanation on how things work, check out the <a href="https://nuxtjs.org" target="_blank">documentation</a>.
+For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org){:target="_blank"}
 
-Accessible <a href="https://sarragozih.herokuapp.com/" target="_blank">here</a>.
+Accessible [here](https://sarragozih.herokuapp.com/){:target="_blank"}
 
 Needs a structured Storyblok API to work locally
